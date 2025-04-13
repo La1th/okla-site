@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useRef } from 'react'
+import Link from 'next/link'
 
 export default function AboutPage() {
   // Section refs for animations
@@ -35,7 +36,7 @@ export default function AboutPage() {
       <div className="absolute bottom-24 right-4 w-80 h-80 bg-primary-400/5 rounded-full blur-3xl -z-10"></div>
       
       {/* Hero section with improved parallax effect */}
-      <section className="pt-32 pb-10 sm:pt-40 sm:pb-12 relative">
+      <section className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative">
         <motion.div 
           className="absolute inset-0 -z-10"
           initial={{ opacity: 0 }}
@@ -78,7 +79,7 @@ export default function AboutPage() {
 
       {/* Company mission section with refined styling */}
       <motion.section 
-        className="pt-10 pb-24 sm:pt-12 sm:pb-32 relative"
+        className="py-16 sm:py-20 relative"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -106,7 +107,8 @@ export default function AboutPage() {
               <div className="mt-3 mx-auto w-24 h-[1px] bg-gradient-to-r from-primary-50/0 via-primary-50/80 to-primary-50/0"></div>
             </motion.div>
 
-            <div className="grid gap-12 md:grid-cols-2 relative">
+            {/* Mission paragraphs in a grid */}
+            <div className="grid gap-8 md:grid-cols-2 relative">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -114,11 +116,8 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="backdrop-blur-sm"
               >
-                <p className="text-lg text-primary-200 mb-6 leading-relaxed">
-                  At OKLA Labs, we exist to bridge the gap between enterprise-level digital innovation and organizations of all sizes. Our mission is to democratize access to transformative technology solutions that drive measurable growth.
-                </p>
                 <p className="text-lg text-primary-200 leading-relaxed">
-                  By combining our expertise from AWS and military digital transformation projects, we deliver solutions that are both technically excellent and strategically sound.
+                  At OKLA Labs, we exist to bridge the gap between enterprise-level digital innovation and organizations of all sizes. Our mission is to democratize access to transformative technology solutions that drive measurable growth.
                 </p>
               </motion.div>
 
@@ -129,31 +128,19 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="backdrop-blur-sm"
               >
-                <h3 className="text-xl font-medium text-primary-50 mb-6">Core Values</h3>
-                <ul className="space-y-4">
-                  {["Technical Excellence Without Compromise", "Client-Centric Solutions", "Data-Driven Decision Making", "Operational Discipline", "Continuous Innovation"].map((value, i) => (
-                    <motion.li 
-                      key={value} 
-                      className="flex gap-x-3 text-primary-300"
-                      initial={{ opacity: 0, x: 10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 + (i * 0.1) }}
-                      viewport={{ once: true }}
-                    >
-                      <span className="text-primary-500 flex-none">•</span>
-                      <span>{value}</span>
-                    </motion.li>
-                  ))}
-                </ul>
+                <p className="text-lg text-primary-200 leading-relaxed">
+                  By combining our expertise from AWS and military digital transformation projects, we deliver solutions that are both technically excellent and strategically sound.
+                </p>
               </motion.div>
             </div>
+
           </motion.div>
         </div>
       </motion.section>
 
       {/* Leadership section with premium styling */}
       <section 
-        className="py-24 sm:py-32 bg-primary-900 relative" 
+        className="py-16 sm:py-20 bg-primary-900 relative" 
         ref={leadershipRef}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -198,7 +185,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                Additionally, our leadership includes veterans who spearheaded digital modernization programs for the U.S. Navy and Marine Corps, overseeing the transformation of mission-critical applications and communication systems. This unique combination of corporate and military experience instills a culture of precision, discipline, and strategic thinking that drives exceptional results for our clients.
+                Additionally, our leadership has extensive experience spearheading digital modernization programs for the U.S. Navy and Marine Corps, overseeing the transformation of mission-critical applications and communication systems. This unique combination of corporate and government contracting experience instills a culture of precision, discipline, and strategic thinking that drives exceptional results for our clients.
               </motion.p>
               
               <motion.div
@@ -242,7 +229,7 @@ export default function AboutPage() {
 
       {/* Expertise section with enhanced visuals */}
       <section 
-        className="py-24 sm:py-32 relative overflow-hidden"
+        className="py-16 sm:py-20 relative overflow-hidden"
         ref={expertiseRef}
       >
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl -z-10"></div>
@@ -250,7 +237,7 @@ export default function AboutPage() {
         
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div 
-            className="mx-auto max-w-3xl text-center mb-20"
+            className="mx-auto max-w-3xl text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -339,7 +326,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA section with enhanced appeal */}
-      <section className="py-24 sm:py-32 bg-primary-900 relative overflow-hidden">
+      <section className="py-16 sm:py-20 bg-primary-900 relative overflow-hidden">
         <div className="absolute top-0 left-1/3 w-1/3 h-1/2 bg-primary-600/5 rounded-full blur-3xl -z-10"></div>
         
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
@@ -364,19 +351,20 @@ export default function AboutPage() {
               >
                 Get In Touch
               </motion.a>
-              <motion.a
-                href="/services"
-                className="text-sm font-medium text-primary-200 transition-all flex items-center gap-1 group"
-                whileHover={{ color: "#ffffff" }}
-                transition={{ duration: 0.2 }}
-              >
-                Explore Our Services 
-                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </motion.a>
+              <Link href="/services" passHref>
+                <motion.span
+                  className="text-sm font-medium text-primary-200 transition-all flex items-center gap-1 group cursor-pointer"
+                  whileHover={{ color: "#ffffff" }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Explore Our Services 
+                  <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </motion.span>
+              </Link>
             </div>
           </motion.div>
         </div>
       </section>
     </div>
   )
-} 
+}

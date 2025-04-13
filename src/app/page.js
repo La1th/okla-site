@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <div className="overflow-hidden bg-primary-900">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-primary-900 text-primary-50">
+      <section className="relative min-h-[80vh] flex items-center justify-center bg-primary-900 text-primary-50">
         <motion.div 
-          className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 text-center"
+          className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -68,7 +68,7 @@ export default function Home() {
       {/* Services Overview Section */}
       <motion.section 
         ref={servicesRef}
-        className="bg-primary-900 py-24 sm:py-32"
+        className="bg-primary-900 pt-4 pb-20 sm:pt-8 sm:pb-24"
         initial={{ opacity: 0 }}
         animate={isServicesInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8 }}
@@ -86,7 +86,7 @@ export default function Home() {
             </p>
           </motion.div>
           
-          <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 sm:mt-20 lg:grid-cols-3">
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 sm:mt-16 lg:grid-cols-3">
             {/* Service Card 1 */}
             <motion.div 
               className="relative overflow-hidden rounded-lg bg-primary-800 p-8 shadow-apple ring-1 ring-primary-700/5"
