@@ -14,6 +14,7 @@ export default function ContactPage() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   // Form handlers
   const handleChange = (e) => {
@@ -27,19 +28,39 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setErrorMessage('')
     
-    // Here you would typically integrate with your email service
-    // This is a placeholder for the actual email sending logic
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      message: ''
-    })
+    try {
+      // Send data to our API endpoint that connects to Google Sheets
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      const data = await response.json()
+      
+      if (response.ok) {
+        // Success - show thank you message
+        setIsSubmitted(true)
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          message: ''
+        })
+      } else {
+        // Handle validation or server errors
+        setErrorMessage(data.message || 'Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setErrorMessage('Failed to submit form. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   // Animation variants
@@ -133,6 +154,17 @@ export default function ContactPage() {
               initial="hidden"
               animate="visible"
             >
+              {errorMessage && (
+                <motion.div 
+                  className="mb-6 p-4 bg-red-900/20 border border-red-800/30 rounded-lg text-red-300 text-sm"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {errorMessage}
+                </motion.div>
+              )}
+              
               <div className="space-y-6">
                 <motion.div variants={itemVariants}>
                   <label htmlFor="name" className="block text-sm font-medium text-primary-300 mb-2">Name</label>
